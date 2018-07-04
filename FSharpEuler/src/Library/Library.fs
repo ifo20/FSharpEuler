@@ -1,29 +1,43 @@
 namespace Library
 
-module Problem =
-    let Titles = 
-        Map.empty
-            .Add(1, "Title")
-            .Add(2, "Title2")
+open System
+open System.Reflection
 
-    let Descriptions = 
-        Map.empty
-            .Add(1, "Desc1")
-            .Add(2, "Desc2")
+type Problem = {
+    Title : string
+    Description : string
+    Solution : unit -> int }
 
-      
-module Solution = 
-    let solution1 () = 
-        printfn "Starting solver"
-        let xx = [ 1 ; 2 ; 3 ] |> List.map (fun x -> x * x)
-        let y = List.reduce (fun a b -> a + b ) xx
-        printfn "%i" y
-        123
+[<AllowNullLiteral>]
+type SolutionModuleAttribute () =
+    inherit Attribute()
 
-    let solvers = 
-        Map.empty
-            .Add(1, solution1)
+[<AllowNullLiteral>]
+type SolutionAttribute (problemId : int) = 
+    inherit Attribute()
+    member __.ProblemId = problemId
+  
+module Solutions = 
+    
+    let find () =
+        Assembly.GetExecutingAssembly().GetTypes()
+        |> Array.filter (fun t -> t.GetCustomAttribute<SolutionModuleAttribute>() |> isNull |> not)
+        |> Array.collect (fun t -> t.GetMethods())
+        |> Array.choose (fun m ->
+            match m.GetCustomAttribute<SolutionAttribute>() with
+            | null -> None
+            | attribute -> Some (attribute.ProblemId, fun () -> m.Invoke(null, [||]) |> unbox<Problem>))
+        |> Map.ofArray
 
-module Helpers = 
-    let isPrime n = 
-        n = 2
+    let print = 
+        let slns = find ()
+        fun problemId ->
+            match slns |> Map.tryFind problemId with
+            | Some func ->
+                let problem = func ()
+                printfn "\nProblem #%d: %s\n" problemId problem.Title
+                printfn "%s\n" problem.Description
+                let ans = problem.Solution()
+                printfn "%d\n" ans
+            | None ->
+                printfn "Solution for problem %d not found" problemId

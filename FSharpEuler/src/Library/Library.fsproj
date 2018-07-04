@@ -5,7 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Include="Helpers.fs" />
     <Compile Include="Library.fs" />
+    <Compile Include="Problems\Problem1.fs" />
+    <Compile Include="Problems\Problem2.fs" />
+    <Compile Include="Problems\Problem3.fs" />
+    <Compile Include="Problems\Problem4.fs" />
+    <Compile Include="Problems\Problem5.fs" />
   </ItemGroup>
 
 </Project>
