@@ -7,30 +7,34 @@ module Problem5 =
 
     let solution () =
         printfn "Starting solver"
-        printfn "Easy, slow way: check every number up to 1,000. Add to total if it is divisible by 3 or 5:"
+        printfn "The slow easy way is to keep trying numbers from 20 (counting upwards) until you find one that can be divided by 1-20"
+        printfn "However we quickly realise that our final answer must contain all prime factors that are used to build the numbers 1-20:
+        2       (2)
+        3       (3)
+        2x2     (4)
+        5       (5)
+        ...
+        3x3     (9)
+        ...
+        2x2x2x2 (16)
+        ...
+        2x2x5   (20)    
+        
+        Hence we need 2x2x2x2 x 3x3 x 5 x 7 x 11 x 13 x 17 x 19 which is ... "
         let timer = System.Diagnostics.Stopwatch.StartNew()
+        
         let ans = 
-            { 1 .. 999 } 
-            |> Seq.filter (fun i -> i % 3 = 0 || i % 5 = 0)
-            |> Seq.sum
+            2*2*2*2*3*3*5*7*11*13*17*19
         
         let elapsed = timer.ElapsedMilliseconds
         printfn "Answer: %i Elapsed : %i ms" ans elapsed 
-
-        printfn "Quick, smart way: Use Euler's formula for sum of integers 1 to N (n(n+1)/2) ... "
-        printfn "We want the first 333 multiples of 3 ... plus the first 199 multiples of 5 ... less the first 66 multiples of 15 (as we are double counting multiples of 15)"
-        printfn "i.e. 3 times the sum of 1 to 333 ... plus 5 times the sum of 1 to 199 ... less 15 times the sum of 1 to 66"
-        timer.Reset()
-        let ans2 = 3 * (sumOfOneTo 333) + 5 * (sumOfOneTo 199) - 15 * (sumOfOneTo 66)
-        let elapsed2 = timer.ElapsedMilliseconds
-        printfn "Answer: %i Elapsed: %d ms" ans2 elapsed2
-
+       
         ans
 
-    [<Solution(2)>]
+    [<Solution(5)>]
     let problem () = {
-        Title = "Multiples of 3 and 5"
-        Description = "If we list all the natural numbers below 10 that are multiples of 3 or 5, we get 3, 5, 6 and 9.
-The sum of these multiples is 23.
-Find the sum of all the multiples of 3 or 5 below 1000."
+        Title = "Smallest multiple"
+        Description = "2520 is the smallest number that can be divided by each of the numbers from 1 to 10 without any remainder.
+
+What is the smallest positive number that is evenly divisible by all of the numbers from 1 to 20?"
         Solution = solution }
