@@ -12,6 +12,11 @@
     <Compile Include="Problems\Problem3.fs" />
     <Compile Include="Problems\Problem4.fs" />
     <Compile Include="Problems\Problem5.fs" />
+    <Compile Include="Problems\Problem6.fs" />
+    <Compile Include="Problems\Problem7.fs" />
+    <Compile Include="Problems\Problem8.fs" />
+    <Compile Include="Problems\Problem9.fs" />
+    <Compile Include="Problems\Problem10.fs" />
   </ItemGroup>
 
 </Project>

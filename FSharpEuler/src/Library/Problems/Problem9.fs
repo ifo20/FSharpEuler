@@ -3,11 +3,10 @@
 open Helpers
 
 [<SolutionModule>]
-module Problem4 =
+module Problem9 =
 
     let solution () =
         printfn "Starting solver"
-        printfn "The product of two 3-digit numbers must be between 100 x 100 and 999 x 999 i.e. between 10,000 and 998,001 -> 5 or 6 digits"
         let timer = System.Diagnostics.Stopwatch.StartNew()
         let candidates = seq { 100 ..  999 }
         let ans = 
@@ -22,11 +21,15 @@ module Problem4 =
 
         ans
 
-    [<Solution(4)>]
+    [<Solution(9)>]
     let problem () = {
-        Title = "Largest palindrome product"
+        Title = "Special Pythagorean triplet"
         Description = "
-A palindromic number reads the same both ways. The largest palindrome made from the product of two 2-digit numbers is 9009 = 91 × 99.
+A Pythagorean triplet is a set of three natural numbers, a < b < c, for which,
 
-Find the largest palindrome made from the product of two 3-digit numbers."
+a2 + b2 = c2
+For example, 32 + 42 = 9 + 16 = 25 = 52.
+
+There exists exactly one Pythagorean triplet for which a + b + c = 1000.
+Find the product abc."
         Solution = solution }
