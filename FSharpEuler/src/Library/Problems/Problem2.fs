@@ -38,7 +38,7 @@ module Problem2 =
         let elapsed = timer.ElapsedMilliseconds
         printfn "Answer: %i Elapsed : %i ms" ans elapsed 
 
-        ans
+        ans |> string
 
     [<Solution(2)>]
     let problem () = {

@@ -6,7 +6,7 @@ open System.Reflection
 type Problem = {
     Title : string
     Description : string
-    Solution : unit -> int }
+    Solution : unit -> string }
 
 [<AllowNullLiteral>]
 type SolutionModuleAttribute () =
@@ -38,6 +38,6 @@ module Solutions =
                 printfn "\nProblem #%d: %s\n" problemId problem.Title
                 printfn "%s\n" problem.Description
                 let ans = problem.Solution()
-                printfn "%d\n" ans
+                printfn "%s\n" ans
             | None ->
                 printfn "Solution for problem %d not found" problemId

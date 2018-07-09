@@ -30,7 +30,7 @@ Hence we need 2x2x2x2 x 3x3 x 5 x 7 x 11 x 13 x 17 x 19 which is ... "
         let elapsed = timer.ElapsedMilliseconds
         printfn "Answer: %i Elapsed : %i ms" ans elapsed 
        
-        ans
+        ans |> string
 
     [<Solution(5)>]
     let problem () = {
