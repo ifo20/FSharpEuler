@@ -33,7 +33,7 @@ module Problem8 =
 "
         let cleanString = 
             bigDaddy 
-            |> Seq.map (string >> System.Int64.TryParse)
+            |> Seq.map (string >> Int64.TryParse)
             |> Seq.filter fst
             |> Seq.map snd
 

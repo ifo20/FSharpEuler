@@ -8,12 +8,12 @@ module Problem10 =
     let solution () =
         printfn "Starting solver"
         let timer = System.Diagnostics.Stopwatch.StartNew()
-        let candidates = seq { 100 ..  999 }
         let ans = 
-            nthPrime 1
+            sieveOfEratosthenes 2000000
+            |> string
             
         let elapsed = timer.ElapsedMilliseconds
-        printfn "Answer: %i Elapsed : %i ms" ans elapsed 
+        printfn "Answer: %s Elapsed : %i ms" ans elapsed 
 
         ans |> string
 
