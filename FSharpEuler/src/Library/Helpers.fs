@@ -1,7 +1,6 @@
 ﻿namespace Library 
 
 module Helpers = 
-    open System.Linq
     open System.Collections
 
     let primeFactors n = 
@@ -14,10 +13,28 @@ module Helpers =
                 breakdown n (d+1L) fs
 
         breakdown n 2L []
+    
+    let primeFactorPowers n = 
+        primeFactors n
+        |> List.groupBy id
+        |> List.map (fun (p, ps) -> (p, List.length ps))
+
+    let countTriangleDivisors n = 
+        // triangle(n) = n * (n+1) / 2
+        let nPrimePowers = primeFactorPowers n
+        let nPlusOnePrimePowers = primeFactorPowers (n+1L)
+        let allPrimePowers = List.concat [ nPrimePowers ; nPlusOnePrimePowers ]
+        allPrimePowers
+        |> List.fold (fun state (prime, power) -> 
+            if prime = 2L then
+                state * (int64 power)
+            else
+                state * (int64 power + 1L)
+        ) 1L
 
     let sumOfOneTo n =
         n * (n + 1) / 2
-
+        
     let toDigitsArray (n : int) =
         n.ToString().ToCharArray()
         |> Array.map int
@@ -84,3 +101,5 @@ module Helpers =
             )
         slightlyIncorrectSum - bigint 1
                 
+    
+    //

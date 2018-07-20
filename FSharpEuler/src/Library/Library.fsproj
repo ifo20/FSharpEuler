@@ -8,6 +8,9 @@
     <Compile Include="Helpers.fs" />
     <Compile Include="Library.fs" />
     <Compile Include="Problems\Problem1.fs" />
+    <Compile Include="Problems\Problem13.fs" />
+    <Compile Include="Problems\Problem12.fs" />
+    <Compile Include="Problems\Problem11.fs" />
     <Compile Include="Problems\Problem2.fs" />
     <Compile Include="Problems\Problem3.fs" />
     <Compile Include="Problems\Problem4.fs" />
