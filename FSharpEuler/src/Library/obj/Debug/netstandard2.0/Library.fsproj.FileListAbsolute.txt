@@ -1,6 +1,0 @@
-C:\repos\other\FSharpEuler\FSharpEuler\src\Library\bin\Debug\netstandard2.0\Library.deps.json
-C:\repos\other\FSharpEuler\FSharpEuler\src\Library\bin\Debug\netstandard2.0\Library.dll
-C:\repos\other\FSharpEuler\FSharpEuler\src\Library\bin\Debug\netstandard2.0\Library.pdb
-C:\repos\other\FSharpEuler\FSharpEuler\src\Library\obj\Debug\netstandard2.0\Library.fsprojAssemblyReference.cache
-C:\repos\other\FSharpEuler\FSharpEuler\src\Library\obj\Debug\netstandard2.0\Library.dll
-C:\repos\other\FSharpEuler\FSharpEuler\src\Library\obj\Debug\netstandard2.0\Library.pdb
