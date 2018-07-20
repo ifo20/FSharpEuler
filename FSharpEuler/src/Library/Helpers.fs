@@ -1,9 +1,18 @@
 ﻿namespace Library 
 
 module Helpers = 
-    open System.Linq
     open System.Collections
+    open System
+    open System.Numerics
 
+    let factorial n = 
+        let rec facInner n (product : BigInteger) = 
+            if n = 1 then
+                product
+            else
+                facInner (n-1) ((BigInteger n) * product)
+        facInner n (BigInteger 1)
+    
     let primeFactors n = 
         let rec breakdown n d fs = 
             if n = 1L then
