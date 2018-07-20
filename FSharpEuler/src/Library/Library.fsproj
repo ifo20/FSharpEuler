@@ -6,7 +6,7 @@
 
   <ItemGroup>
     <Compile Include="Helpers.fs" />
-    <Compile Include="Library.fs" />
+    <Compile Include="Problems\Library.fs" />
     <Compile Include="Problems\Problem1.fs" />
     <Compile Include="Problems\Problem20.fs" />
     <Compile Include="Problems\Problem19.fs" />
