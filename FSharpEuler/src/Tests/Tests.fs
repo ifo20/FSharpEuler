@@ -15,7 +15,7 @@ type BaseTestData() =
  
 type MyTestData() =
     inherit BaseTestData()
-    override this.data = seq { 1 .. 14 } |> Seq.map (fun s -> [| box s |])
+    override this.data = seq { 18 .. 20 } |> Seq.map (fun s -> [| box s |])
 
 
 let problemMap = Solutions.find ()
@@ -33,8 +33,14 @@ let correctAnswerMap =
         .Add(10, "142913828922")
         .Add(11, "70600674")
         .Add(12, "76576500")
-        .Add(13, "")
+        .Add(13, "5537376230")
         .Add(14, "837799")
+        .Add(15, "137846528820")
+        .Add(16, "1366")
+        .Add(17, "21124")
+        .Add(18, "1074")
+        .Add(19, "171")
+        .Add(20, "648")
 
 let solutionWorks id problem = 
     let calculatedAnswer =

@@ -7,7 +7,8 @@ module Problem13 =
 
     let solution () =
         let timer = System.Diagnostics.Stopwatch.StartNew()
-        printfn "We use a large array which each element representing a column of the large sum"
+        printfn "We use a large array which each element representing a column of the large sum."
+        printfn "100 * 50 digit numbers can be no bigger than 100 * 10^50 = 10^52 i.e. a 53 digit number so we only need 53 columns"
         let bigNumber = "
 37107287533902102798797998220837590246510135740250
 46376937677490009712648124896970078050417018260538
@@ -109,8 +110,38 @@ module Problem13 =
 72107838435069186155435662884062257473692284509516
 20849603980134001723930671666823555245252804609722
 53503534226472524250874054075591789781264330331690"
+
+        let addTwoLargeNumberArrays a b : int[] = 
+            let n = Array.length a
+            let rec addInner (a : int[]) (b : int[]) carry columnIndex = 
+                if columnIndex < 0 then
+                    a
+                else
+                    if a.[columnIndex] + b.[columnIndex] + carry > 9 then
+                        Array.set a columnIndex (a.[columnIndex] + b.[columnIndex] + carry - 10) |> ignore
+                        addInner a b 1 (columnIndex - 1)
+                    else
+                        Array.set a columnIndex (a.[columnIndex] + b.[columnIndex] + carry) |> ignore
+                        addInner a b 0 (columnIndex - 1)
+
+            addInner a b 0 (n-1)
+
+        let originals = 
+            bigNumber.Split('\r', '\n')
+            |> Array.filter (String.IsNullOrEmpty >> not)
+            |> Array.map (fun str -> "000" + str)
+            |> Array.map ((Seq.map (fun c -> int c - int '0')) >> Array.ofSeq)
+
+        let sum = 
+            originals
+            |> Array.reduce addTwoLargeNumberArrays
+
+
+        let leadingZeros = sum |> Array.takeWhile (fun x -> x = 0) |> Array.length
         let ans = 
-            42
+            sum.[leadingZeros..(leadingZeros + 9)]
+            |> Array.map string
+            |> String.concat ""
             |> string
             
         let elapsed = timer.ElapsedMilliseconds

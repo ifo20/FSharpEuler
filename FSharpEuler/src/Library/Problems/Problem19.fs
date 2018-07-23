@@ -1,16 +1,22 @@
 ﻿namespace Library
 
-open Helpers
-
 [<SolutionModule>]
 module Problem19 =
+    open System
 
     let solution () =
-        printfn "Starting solver - this solution is yet to be written"
         let timer = System.Diagnostics.Stopwatch.StartNew()
-        
         let ans = 
-            sieveOfEratosthenes 2000000
+            seq { 1901 .. 2000 }
+            |> Seq.map (fun y ->
+                seq { 1 .. 12 }
+                |> Seq.map (fun m ->
+                    DateTime(y, m, 1)
+                )
+                |> Seq.filter (fun d -> d.DayOfWeek = DayOfWeek.Sunday)
+            )
+            |> Seq.collect id
+            |> Seq.length
             |> string
             
         let elapsed = timer.ElapsedMilliseconds

@@ -28,6 +28,15 @@ module Helpers =
         |> List.groupBy id
         |> List.map (fun (p, ps) -> (p, List.length ps))
 
+    let countDivisors n = 
+        primeFactorPowers n
+        |> List.fold (fun state (prime, power) -> 
+            if prime = 2L then
+                state * (int64 power)
+            else
+                state * (int64 power + 1L)
+        ) 1L
+
     let countTriangleDivisors n = 
         // triangle(n) = n * (n+1) / 2
         let nPrimePowers = primeFactorPowers n

@@ -6,7 +6,7 @@ open Helpers
 module Problem14 =
 
     let solution () =
-        printfn "Starting solver  - this solution is yet to be written"
+        printfn "Starting solver"
         let timer = System.Diagnostics.Stopwatch.StartNew()
         
         printfn "We gradually build an array of length n showing how many steps are required to step from a number n back to 1."

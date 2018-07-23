@@ -5,9 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Include="Library.fs" />
     <Compile Include="Helpers.fs" />
-    <Compile Include="Problems\Library.fs" />
     <Compile Include="Problems\Problem1.fs" />
+    <Compile Include="Problems\Problem21.fs" />
     <Compile Include="Problems\Problem20.fs" />
     <Compile Include="Problems\Problem19.fs" />
     <Compile Include="Problems\Problem18.fs" />
