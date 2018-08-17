@@ -28,14 +28,16 @@ module Helpers =
         |> List.groupBy id
         |> List.map (fun (p, ps) -> (p, List.length ps))
 
-    let countDivisors n = 
-        primeFactorPowers n
-        |> List.fold (fun state (prime, power) -> 
-            if prime = 2L then
-                state * (int64 power)
-            else
-                state * (int64 power + 1L)
-        ) 1L
+    let sumOfDivisors n = 
+        seq { 1 .. n-1 }
+        |> Seq.sumBy (fun d -> match n % d with 0 -> d | _ -> 0)
+
+    let isAmicable n = 
+        let sodn = sumOfDivisors n
+        let sodsodn = sumOfDivisors sodn
+        n = sodsodn && sodn <> n
+
+    isAmicable 4196
 
     let countTriangleDivisors n = 
         // triangle(n) = n * (n+1) / 2

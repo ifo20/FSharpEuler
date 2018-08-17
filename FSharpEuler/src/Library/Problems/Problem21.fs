@@ -9,13 +9,13 @@ module Problem21 =
         let timer = System.Diagnostics.Stopwatch.StartNew()
         
         let ans = 
-            countDivisors 42L
+            seq { 1 .. 10000 }
+            |> Seq.sumBy (fun i -> if isAmicable i then i else 0)
             |> string
             
         let elapsed = timer.ElapsedMilliseconds
         printfn "Answer: %s Elapsed : %i ms" ans elapsed 
-
-        ans |> string
+        ans
 
     [<Solution(21)>]
     let problem () = {
